@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            /* Optimasi background image */
+            background: url('love.jpg') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Menambahkan overlay untuk memastikan teks tetap terbaca */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3); /* Semi-transparent white overlay */
+            z-index: -1;
+        }
+
+        .profile-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            padding: 50px 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 60px;
+            border-radius: 15px;
+        }
+
+        img.profile-picture {
+            display: block;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: auto;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1.name {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .navbar {
+            background-color: rgba(248, 230, 221, 0.9); /* Semi-transparent soft peach */
+            padding: 10px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #c39bd3; /* Muted lavender */
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: #8e44ad; /* Deep purple */
+            transition: color 0.5s ease;
+        }
+
+        /* Style untuk tombol musik */
+        .music-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: rgba(195, 155, 211, 0.7);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Style untuk jam digital dengan tema lucu/kawaii */
+        .digital-clock {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: rgba(255, 223, 236, 0.9); /* Warna pink pastel */
+            padding: 15px 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(255, 182, 193, 0.3);
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #ff69b4; /* Warna hot pink */
+            border: 3px solid #ffb6c1; /* Border pink muda */
+            z-index: 1000;
+            font-family: 'Comic Sans MS', cursive;
+            animation: bounce 3s ease-in-out infinite;
+            letter-spacing: 2px;
+            text-shadow: 1px 1px 2px rgba(255, 182, 193, 0.5);
+        }
+
+        /* Animasi bounce yang lucu */
+        @keyframes bounce {
+            0% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
+            100% { transform: translateY(0px) scale(1); }
+        }
+
+        /* Efek hover lucu */
+        .digital-clock:hover {
+            background: rgba(255, 182, 193, 0.9);
+            transform: scale(1.1) rotate(5deg);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(255, 182, 193, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div class="digital-clock" id="clock"></div>
+
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="profile-container">
+        <img class="profile-picture" src="profile.jpg" alt="Foto Profil">
+        <h1 class="name">Umar khanif</h1>
+        <p>Tentang saya</p>
+        <ul>
+            <li>Hobi: Basket, Wokrkout, Memasak, Baca buku, Lari, Mendengarkan musik </li>
+            <li>Tinggal: Perum cengkong Persada</li>
+            <li>Skills: Bisa membuat vilpi jatuh cinta meski vilpi tak cinta</li>
+        </ul>
+    </div>
+
+    <!-- Tambahkan audio player -->
+    <audio id="bgMusic" loop autoplay style="display: none;">
+        <source src="risalah.mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <!-- Tombol kontrol musik -->
+    <div class="music-controls" onclick="toggleMusic()">
+        <i id="musicIcon" style="font-size: 24px;">🎵</i>
+    </div>
+
+    <script>
+        // Fungsi untuk memulai musik
+        function initMusic() {
+            const music = document.getElementById('bgMusic');
+            
+            // Memulai musik saat ada interaksi pertama
+            document.addEventListener('click', function() {
+                music.play();
+            }, { once: true });
+
+            // Memastikan musik tetap berputar
+            setInterval(function() {
+                if (music.paused) {
+                    music.play();
+                }
+            }, 1000);
+        }
+
+        // Fungsi untuk toggle musik
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const icon = document.getElementById('musicIcon');
+            
+            if (music.paused) {
+                music.play();
+                icon.textContent = '🎵';
+            } else {
+                music.pause();
+                icon.textContent = '🔇';
+            }
+        }
+
+        // Menangani kasus ketika tab browser tidak aktif
+        document.addEventListener("visibilitychange", function() {
+            const music = document.getElementById('bgMusic');
+            if (!document.hidden && !music.paused) {
+                music.play();
+            }
+        });
+
+        // Inisialisasi musik
+        initMusic();
+
+        // Fungsi untuk update jam
+        function updateClock() {
+            const clock = document.getElementById('clock');
+            const now = new Date();
+            
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            
+            // Menambahkan emoji lucu
+            clock.innerHTML = `🌸 ${hours}:${minutes}:${seconds} 🌸`;
+        }
+
+        // Update jam setiap detik
+        setInterval(updateClock, 1000);
+        
+        // Panggil sekali saat halaman dimuat
+        updateClock();
+    </script>
+</body>
+</html>

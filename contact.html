@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kontak</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f9f4f2; /* Soft yellow */
+            color: #c39bd3; /* Muted lavender */
+            margin: 0;
+            padding: 20px;
+        }
+
+        .navbar {
+            background-color: #f8e6dd; /* Soft peach */
+            padding: 10px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #8e44ad; /* Deep purple */
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: #c39bd3; /* Muted lavender */
+            transition: color 0.5s ease;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #efe9dd; /* Light peach */
+            padding: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            position: relative;
+            top: 70px; /* Adjust based on the height of your navbar */
+        }
+
+        h1 {
+            text-align: center;
+            color: #f5a623; /* Bright tangerine */
+            margin-bottom: 40px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #8e44ad; /* Deep purple */
+        }
+
+        .label, .input-field {
+            width: calc(50% - 15px); /* Adjust based on your needs */
+        }
+
+        button {
+            background-color: #8e44ad; /* Deep purple */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.5s ease;
+        }
+
+        button:hover {
+            background-color: #c39bd3; /* Muted lavender */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="container">
+        <h1>Kontak Kami</h1>
+        <form>
+            <div class="contact-info">
+                <label for="name" class="label">Nama:</label>
+                <input type="text" id="name" class="input-field" required>
+            </div>
+            <div class="contact-info">
+                <label for="email" class="label">Email:</label>
+                <input type="email" id="email" class="input-field" required>
+            </div>
+            <div class="contact-info">
+                <label for="message" class="label">Pesan Anda:</label>
+                <textarea id="message" class="input-field" rows="5" required></textarea>
+            </div>
+            <button type="submit" style="display: block; margin-left: auto; margin-right: auto;">Kirim</button>
+        </form>
+    </div>
+</body>
+</html>
